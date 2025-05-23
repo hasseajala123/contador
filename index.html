@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contagem Regressiva</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #0e0e0e;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .timer {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Contagem Regressiva para 12/09/2026</h1>
+  <div class="timer" id="countdown">Carregando...</div>
+
+  <script>
+    const destino = new Date("2026-09-12T00:00:00");
+
+    function atualizarContagem() {
+      const agora = new Date();
+      const diferenca = destino - agora;
+
+      if (diferenca <= 0) {
+        document.getElementById("countdown").textContent = "Chegou o dia!";
+        return;
+      }
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferenca / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `${dias} dias ${horas.toString().padStart(2, '0')}h ` +
+        `${minutos.toString().padStart(2, '0')}m ` +
+        `${segundos.toString().padStart(2, '0')}s`;
+    }
+
+    setInterval(atualizarContagem, 1000);
+    atualizarContagem();
+  </script>
+</body>
+</html>
